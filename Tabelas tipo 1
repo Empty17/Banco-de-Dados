@@ -1,0 +1,60 @@
+CREATE DATABASE  bibliotech;
+USE bibliotech;
+
+CREATE TABLE estabelecimento
+(
+		ID_estabelecimento int unsigned auto_increment,
+        estado varchar(50) not null,
+        bairro varchar(200) not null,
+        endereço varchar(400) not null,
+        nome varchar(100) not null default 'biblioteca',
+        PRIMARY KEY (ID_estabelecimento)
+);
+
+CREATE TABLE consumivel
+(
+		ID_Consumivel int unsigned auto_increment,
+        preco double not null,
+        PRIMARY KEY (ID_Consumivel)
+);
+
+CREATE TABLE tipos_consumivel
+(
+		ID_Consumivel int unsigned auto_increment,
+        ID_TipoConsumiveis int unsigned auto_increment,
+        bebidas varchar(50) not null,
+        comidas varchar(50) not null,
+        jogos varchar(50) not null,
+        filmes varchar(50) not null,
+        prlucia varchar(50) not null,
+        PRIMARY KEY (ID_TiposConsumiveis),
+        FOREIGN KEY (ID_Consumivel) 
+);
+
+CREATE TABLE cliente
+(
+		ID_Cliente int unsigned auto_increment,
+        CPF varchar(15) not null,
+        nome varchar(100) not null,
+        dataNasc varchar(10) not null,
+        PRIMARY KEY (ID_Cliente)
+);
+
+CREATE TABLE autor
+(
+		ID_Autor int unsigned auto_increment,
+        nacionalidade varchar(100) not null,
+        nome varchar(100) not null,
+        dataNasc varchar(10) not null,
+        PRIMARY KEY (ID_Autor)
+);
+
+CREATE TABLE estabelecimento
+(
+		ID_estabelecimento int unsigned auto_increment,
+        estado varchar(50) not null,
+        bairro varchar(200) not null,
+        endereço varchar(400) not null,
+        nome varchar(100) not null default 'biblioteca',
+        PRIMARY KEY (ID_estabelecimento)
+);
