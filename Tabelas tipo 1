@@ -1,9 +1,11 @@
+DROP DATABASE bibliotech;
+
 CREATE DATABASE  bibliotech;
 USE bibliotech;
 
 CREATE TABLE estabelecimento
 (
-		ID_estabelecimento int unsigned auto_increment,
+		ID_estabelecimento int unsigned not null auto_increment,
         estado varchar(50) not null,
         bairro varchar(200) not null,
         endereço varchar(400) not null,
@@ -13,22 +15,22 @@ CREATE TABLE estabelecimento
 
 CREATE TABLE consumivel
 (
-		ID_Consumivel int unsigned auto_increment,
+		ID_Consumivel int unsigned not null auto_increment,
         preco double not null,
         PRIMARY KEY (ID_Consumivel)
 );
 
-CREATE TABLE tipos_consumivel
+CREATE TABLE tiposConsumivel
 (
-		ID_Consumivel int unsigned auto_increment,
-        ID_TipoConsumiveis int unsigned auto_increment,
+		FK_ID_Consumivel int unsigned not null,
+		ID_TipoConsumivel int unsigned not null auto_increment,
         bebidas varchar(50) not null,
         comidas varchar(50) not null,
         jogos varchar(50) not null,
         filmes varchar(50) not null,
         prlucia varchar(50) not null,
-        PRIMARY KEY (ID_TiposConsumiveis),
-        FOREIGN KEY (ID_Consumivel) 
+        PRIMARY KEY (ID_TipoConsumivel),
+        CONSTRAINT FK_Consumivel_TipoConsumivel FOREIGN KEY (FK_ID_Consumivel) REFERENCES consumivel(ID_Consumivel)
 );
 
 CREATE TABLE cliente
@@ -49,12 +51,77 @@ CREATE TABLE autor
         PRIMARY KEY (ID_Autor)
 );
 
-CREATE TABLE estabelecimento
+CREATE TABLE endereco
 (
-		ID_estabelecimento int unsigned auto_increment,
-        estado varchar(50) not null,
-        bairro varchar(200) not null,
-        endereço varchar(400) not null,
-        nome varchar(100) not null default 'biblioteca',
-        PRIMARY KEY (ID_estabelecimento)
+	ID_Endereco int unsigned not null auto_increment,
+    municipio varchar(100) not null default '',
+    estado varchar(100) not null default '',
+    cidade varchar(100) not null default '',
+    CEP varchar(10) not null default '',
+    complemento varchar(100) not null default '',
+    numero int unsigned not null,
+    FK_ID_Cliente int unsigned not null,
+    logradouro varchar(100) not null default '',
+    PRIMARY KEY(ID_Endereco),
+    CONSTRAINT FK_Cliente_Endereco FOREIGN KEY (FK_ID_Cliente) REFERENCES cliente(ID_Cliente) 
+);
+
+CREATE TABLE telefone
+(
+	ID_Telefone int unsigned not null auto_increment,
+    telefone int unsigned not null,
+    FK_ID_Cliente int unsigned not null,
+    PRIMARY KEY(ID_Telefone),
+    CONSTRAINT FK_Cliente_Telefone FOREIGN KEY (FK_ID_Cliente) REFERENCES cliente(ID_Cliente) 
+);
+
+CREATE TABLE compra
+(
+	ID_Compra int unsigned not null auto_increment,
+    valor int unsigned not null,
+    data varchar(10) not null default '',
+    FK_ID_Estabelecimento int unsigned not null,
+    PRIMARY KEY(ID_Compra),
+    CONSTRAINT FK_Estabelecimento_Compra FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+);
+
+CREATE TABLE clientecompra
+(
+ID_ClienteCompra int unsigned not null auto_increment,
+FK_ID_Cliente int unsigned not null,
+FK_ID_Compra int unsigned not null,
+PRIMARY KEY(ID_ClienteCompra),
+CONSTRAINT FK_ID_Cliente_ClienteCompra FOREIGN KEY ( FK_ID_Cliente ) REFERENCES cliente(ID_Cliente),
+CONSTRAINT FK_ID_Compra_ClienteCompra FOREIGN KEY ( FK_ID_Compra ) REFERENCES compra(ID_Compra)
+);
+
+
+CREATE TABLE livros
+(
+ID_Livro int unsigned not null auto_increment,
+FK_ID_Cliente int unsigned not null,
+editora varchar(50) not null,
+ano_lanc varchar(10) not null,
+titulo varchar(50) not null default '',
+PRIMARY KEY(ID_Livro),
+CONSTRAINT FK_ID_Cliente_Livro FOREIGN KEY ( FK_ID_Cliente ) REFERENCES cliente(ID_Cliente)
+);
+
+CREATE TABLE tipogenero
+(
+ID_TipoGenero int unsigned not null auto_increment,
+FK_ID_Livro int unsigned not null,
+acao boolean not null,
+gastronomia boolean not null,
+ficcao_cientifica boolean not null,
+infantil boolean not null,
+fantasia boolean not null,
+religioso boolean not null,
+romance boolean not null,
+novela boolean not null,
+suspense boolean not null,
+horror boolean not null,
+aventura boolean not null,
+PRIMARY KEY(ID_TipoGenero),
+CONSTRAINT FK_ID_Livro_TipoGenero FOREIGN KEY ( FK_ID_Livro ) REFERENCES livros(ID_Livro)
 );
