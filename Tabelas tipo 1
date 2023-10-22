@@ -125,3 +125,60 @@ aventura boolean not null,
 PRIMARY KEY(ID_TipoGenero),
 CONSTRAINT FK_ID_Livro_TipoGenero FOREIGN KEY ( FK_ID_Livro ) REFERENCES livros(ID_Livro)
 );
+
+CREATE TABLE autorlivros
+(
+		ID_AutorLivros int unsigned auto_increment,
+  		FK_ID_Autor int unsigned not NULL,
+  		fk_ID_Livros int unsigned not NULL,
+        PRIMARY KEY (ID_AutorLivros),
+  		CONSTRAINT FK_ID_AL_Livros FOREIGN KEY ( FK_ID_Livros ) REFERENCES livros(ID_Livro),
+    	CONSTRAINT FK_ID_AL_Autor FOREIGN KEY ( FK_ID_Autor ) REFERENCES livros(ID_Autor)
+);
+
+CREATE TABLE funcionario
+(
+		ID_Funcionario int unsigned  auto_increment,
+        salario int not null,
+        datanasc varchar(10) not null,
+        sexo varchar(5) not null,
+        nome varchar(100) not null default 'funcionario',
+  		FK_ID_Estabelecimento int not NULL,
+        PRIMARY KEY (ID_Funcionario),
+  		CONSTRAINT FK_Estabelecimento_Funcionario FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+);
+
+CREATE TABLE colaborador
+(
+		ID_Colaborador int unsigned  auto_increment,
+        tipo varchar(20) not null,
+        estado varchar(50) not null,
+        endereço varchar(200) not null,
+  		FK_ID_Estabelecimento int not NULL,
+        PRIMARY KEY (ID_Colaborador),
+  		CONSTRAINT FK_Estabelecimento_Colaborador FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+);
+
+CREATE TABLE custos
+(
+		ID_Custos int unsigned  auto_increment,
+        custosTotais double not null,
+  		FK_ID_Estabelecimento int not NULL,
+  		FK_ID_Consumivel int not NULL,
+        PRIMARY KEY (ID_Custos),
+  		CONSTRAINT FK_Estabelecimento_Custos FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento),
+  		CONSTRAINT FK_Consumivel_Custos FOREIGN KEY (FK_ID_Consumivel) REFERENCES consumivel(ID_Consumivel)
+);
+
+CREATE TABLE tipocustos
+(
+ID_TipoCusto int unsigned auto_increment,
+FK_ID_Custos int unsigned not null,
+funcionario double not null,
+estoque double not null,
+aluguel double not null,
+luz double not null,
+agua double not null,
+PRIMARY KEY(ID_TipoCusto),
+CONSTRAINT FK_ID_TC_TipoCustos FOREIGN KEY ( FK_ID_Custos ) REFERENCES custos(ID_Custos)
+);
