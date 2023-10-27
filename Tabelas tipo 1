@@ -183,3 +183,159 @@ PRIMARY KEY(ID_TipoCusto),
 CONSTRAINT FK_ID_TC_TipoCustos FOREIGN KEY ( FK_ID_Custos ) REFERENCES custos(ID_Custos)
 );
 
+
+/*
+SELECT 
+*/
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('785.985.335-25', 'Roger Guedes', '25/09/1994');
+
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('785.985.000-25', 'Tiquinho Suares', '18/07/1997');
+
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('888.987.154-01', 'Suares Lima', '25/10/1990');
+
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('785.985.745-88', 'Leandro Guedes', '24/09/1994');
+
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('785.922.285-25', 'Gabriel Jesus', '08/02/1998');
+
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('584.859.669-08', 'Matheus Campos', '20/12/2005');
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('785.987.335-25', 'Lima Pereira', '19/11/2006');
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('432.978.115-77', 'Maria Fernanda', '06/04/2004');
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('154.850.005.84', 'Roger Guedes de Santos', '25/09/1984');
+INSERT INTO cliente
+( CPF, nome, dataNasc)
+VALUES
+('454.235.455-23', 'Gabriel Alves', '05/10/2002');
+
+/*
+INSERT estabelecimento
+*/
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(1, 'SP', 'Mooca', 'Rua Japones, 25', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(2, 'SP', 'Santo Amaro', 'Rua Juliano Peixoto, 1155', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(3, 'SP', 'Alphaville', 'Rua Borges Zanneti, 0054', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(4, 'RJ', 'Fluminense', 'Rua Namili , 5422', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(5, 'RJ', 'Flamengo', 'Rua Pereido de Castro, 15', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(6, 'MG', 'Timinhamguá', 'Rua Azevedo Neto, 158', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(7, 'RS', 'Santana', 'Rua Castro Alves, 874', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(8, 'RS', 'Jardim Botânico', 'Rua Castro Alves, 774', 'Bibliotech');
+
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(9, 'AM', 'Jardins', 'Rua Alves, 774', 'Bibliotech');
+
+INSERT INTO estabelecimento
+(ID_estabelecimento, estado, bairro, endereço, nome)
+VALUES
+(10, 'BA', 'Meu Rei', 'Rua Alves de Santana, 8474', 'Bibliotech');
+
+/*
+SELECT consumivel
+*/
+INSERT INTO consumivel
+(preco)
+VALUES
+(15.99);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(1.99);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(20.00);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(2500.00);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(15.99);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(19.99);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(9.99);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(150.59);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(1854.00);
+
+INSERT INTO consumivel
+(preco)
+VALUES
+(10.00);
