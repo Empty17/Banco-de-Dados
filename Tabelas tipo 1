@@ -133,19 +133,19 @@ CREATE TABLE autorlivros
   		fk_ID_Livros int unsigned not NULL,
         PRIMARY KEY (ID_AutorLivros),
   		CONSTRAINT FK_ID_AL_Livros FOREIGN KEY ( FK_ID_Livros ) REFERENCES livros(ID_Livro),
-    	CONSTRAINT FK_ID_AL_Autor FOREIGN KEY ( FK_ID_Autor ) REFERENCES livros(ID_Autor)
+    	CONSTRAINT FK_ID_AL_Autor FOREIGN KEY ( FK_ID_Autor ) REFERENCES autor(ID_Autor)
 );
 
 CREATE TABLE funcionario
 (
 		ID_Funcionario int unsigned  auto_increment,
-        salario int not null,
+        salario int unsigned not null,
         datanasc varchar(10) not null,
         sexo varchar(5) not null,
         nome varchar(100) not null default 'funcionario',
-  		FK_ID_Estabelecimento int not NULL,
+  		FK_ID_Estabelecimento int unsigned not NULL,
         PRIMARY KEY (ID_Funcionario),
-  		CONSTRAINT FK_Estabelecimento_Funcionario FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+        CONSTRAINT FK_ID_Estabelecimento_Funcionario FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento)
 );
 
 CREATE TABLE colaborador
@@ -154,17 +154,17 @@ CREATE TABLE colaborador
         tipo varchar(20) not null,
         estado varchar(50) not null,
         endereço varchar(200) not null,
-  		FK_ID_Estabelecimento int not NULL,
+  		FK_ID_Estabelecimento int unsigned not NULL,
         PRIMARY KEY (ID_Colaborador),
-  		CONSTRAINT FK_Estabelecimento_Colaborador FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+  		CONSTRAINT FK_ID_Estabelecimento_Colaborador FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
 );
 
 CREATE TABLE custos
 (
 		ID_Custos int unsigned  auto_increment,
         custosTotais double not null,
-  		FK_ID_Estabelecimento int not NULL,
-  		FK_ID_Consumivel int not NULL,
+  		FK_ID_Estabelecimento int unsigned not NULL,
+  		FK_ID_Consumivel int unsigned not NULL,
         PRIMARY KEY (ID_Custos),
   		CONSTRAINT FK_Estabelecimento_Custos FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento),
   		CONSTRAINT FK_Consumivel_Custos FOREIGN KEY (FK_ID_Consumivel) REFERENCES consumivel(ID_Consumivel)
@@ -182,3 +182,4 @@ agua double not null,
 PRIMARY KEY(ID_TipoCusto),
 CONSTRAINT FK_ID_TC_TipoCustos FOREIGN KEY ( FK_ID_Custos ) REFERENCES custos(ID_Custos)
 );
+
