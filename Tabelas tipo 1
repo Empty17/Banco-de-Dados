@@ -1,3 +1,4 @@
+
 DROP DATABASE bibliotech;
 
 CREATE DATABASE  bibliotech;
@@ -182,7 +183,52 @@ agua double not null,
 PRIMARY KEY(ID_TipoCusto),
 CONSTRAINT FK_ID_TC_TipoCustos FOREIGN KEY ( FK_ID_Custos ) REFERENCES custos(ID_Custos)
 );
+UPDATE estabelecimento SET estado = 'RJ' WHERE ID_estabelecimento = 1;
+UPDATE estabelecimento SET bairro = 'Ipanema' WHERE ID_estabelecimento = 2;
+UPDATE estabelecimento SET nome = 'Boteco Belmonte' WHERE ID_estabelecimento = 3;
+UPDATE estabelecimento SET endereço = 'Av. Vieira Souto, 236' WHERE ID_estabelecimento = 4;
+UPDATE estabelecimento SET estado = 'SP', bairro = 'Santo Amaro', nome = 'Mc Donalds', endereço = 'SP-015' WHERE ID_estabelecimento = 5;
 
+UPDATE consumivel SET preco = 18.99 WHERE ID_Consumivel = 1;
+UPDATE consumivel SET preco = 2.49 WHERE ID_Consumivel = 2;
+UPDATE consumivel SET preco = 25.50 WHERE ID_Consumivel = 3;
+UPDATE consumivel SET preco = 2600.00 WHERE ID_Consumivel = 4;
+UPDATE consumivel SET preco = 16.99 WHERE ID_Consumivel = 5;
+
+UPDATE tiposConsumivel SET bebidas = 'Refrigerante' WHERE FK_ID_Consumivel = 1;
+UPDATE tiposConsumivel SET filmes = 'Terror' WHERE FK_ID_Consumivel = 4;
+UPDATE tiposConsumivel SET prlucia = 'Jogos de Tabuleiro' WHERE FK_ID_Consumivel = 5;
+UPDATE tiposConsumivel SET bebidas = 'Energético' WHERE FK_ID_Consumivel = 7;
+UPDATE tiposConsumivel SET comidas = 'Vegano' WHERE FK_ID_Consumivel = 9;
+
+UPDATE cliente SET nome = 'Rogério Tergolina' WHERE ID_Cliente = 1;
+UPDATE cliente SET dataNasc = '09/01/1983' WHERE ID_Cliente = 3;
+UPDATE cliente SET CPF = '427.819.356-23' WHERE ID_Cliente = 5;
+UPDATE cliente SET nome = 'Leandro da Silva' WHERE ID_Cliente = 7;
+UPDATE cliente SET dataNasc = '15/05/2002' WHERE ID_Cliente = 9;
+
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 6;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 8;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 9;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 10;
+
+DELETE FROM consumivel WHERE ID_Consumivel = 6;
+DELETE FROM consumivel WHERE ID_Consumivel = 7;
+DELETE FROM consumivel WHERE ID_Consumivel = 8;
+DELETE FROM consumivel WHERE ID_Consumivel = 9;
+DELETE FROM consumivel WHERE ID_Consumivel = 10;
+
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 6;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 7;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 8;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 9;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 10;
+
+DELETE FROM cliente WHERE ID_Cliente = 2;
+DELETE FROM cliente WHERE ID_Cliente = 4;
+DELETE FROM cliente WHERE ID_Cliente = 6;
+DELETE FROM cliente WHERE ID_Cliente = 8;
+DELETE FROM cliente WHERE ID_Cliente = 10;
 
 /*
 SELECT 
@@ -339,3 +385,5 @@ INSERT INTO consumivel
 (preco)
 VALUES
 (10.00);
+
+
