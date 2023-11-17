@@ -82,12 +82,13 @@ CREATE TABLE telefone
 CREATE TABLE compra
 (
 	ID_Compra int unsigned not null auto_increment,
-    valor int unsigned not null,
+    valor double unsigned not null,
     data varchar(10) not null default '',
     FK_ID_Estabelecimento int unsigned not null,
     PRIMARY KEY(ID_Compra),
     CONSTRAINT FK_Estabelecimento_Compra FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
 );
+
 
 CREATE TABLE clientecompra
 (
@@ -138,17 +139,16 @@ CREATE TABLE funcionario
 		ID_Funcionario int unsigned  auto_increment,
         salario int unsigned not null,
         datanasc varchar(10) not null,
-        sexo varchar(5) not null,
         nome varchar(100) not null default 'funcionario',
   		FK_ID_Estabelecimento int unsigned not NULL,
         PRIMARY KEY (ID_Funcionario),
         CONSTRAINT FK_ID_Estabelecimento_Funcionario FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento)
 );
 
+
 CREATE TABLE colaborador
 (
 		ID_Colaborador int unsigned  auto_increment,
-        tipo varchar(20) not null,
         estado varchar(50) not null,
         endereço varchar(200) not null,
   		FK_ID_Estabelecimento int unsigned not NULL,
@@ -439,6 +439,165 @@ INSERT INTO livros
 (FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
 VALUES
 (1, 'Editora Vida', '01/01/1800', 'A Biblia dos Chefes', 10);
+
+
+/*INSERT COMPRA*/
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(1, 19.99, '11/11/2002');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(1, 135.60, '11/05/2022');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(2, 129.99, '08/11/2015');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(3, 19.99, '09/11/2001');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(3, 5.99, '28/01/2001');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(4, 18.88, '09/11/2023');
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(8, 50.00, 17/11/2023);
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(8, 50.00, 17/12/2023);
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(9, 188.00, 01/05/2019);
+
+INSERT INTO compra
+(FK_ID_Estabelecimento, valor, data)
+VALUES
+(4, 50.00, 17/12/2013);
+
+/*INSERT's funcionario*/
+
+INSERT INTO funcionario
+(salario, datanasc, nome, FK_ID_Estabelecimento)
+VALUES
+(2700, '21/12/2005', 'Matheus Campos', 4);
+
+INSERT INTO funcionario
+(salario, datanasc, nome, FK_ID_Estabelecimento)
+VALUES
+(2700, '21/12/2002', 'Gabriel Alves', 10);
+
+INSERT INTO funcionario
+(salario, datanasc, nome, FK_ID_Estabelecimento)
+VALUES
+(2000, '16/06/2011', 'Roberto Carlos', 3);
+
+INSERT INTO funcionario
+(salario, datanasc, nome, FK_ID_Estabelecimento)
+VALUES
+(3200, '18/07/2004', 'Maria Fernanda', 2);
+
+INSERT INTO funcionario
+(salario, datanasc,  nome, FK_ID_Estabelecimento)
+VALUES
+(1200, '21/12/2005', 'Roberto Carlos', 4);
+
+INSERT INTO funcionario
+(salario, datanasc,nome, FK_ID_Estabelecimento)
+VALUES
+(1500, '21/11/2000', 'Miguel Ohara', 2);
+
+INSERT INTO funcionario
+(salario, datanasc,nome, FK_ID_Estabelecimento)
+VALUES
+(1500, '21/11/2002', 'Dayverson Ohara', 2);
+
+INSERT INTO funcionario
+(salario, datanasc,nome, FK_ID_Estabelecimento)
+VALUES
+(4500, '01/04/1985', 'Daniela Souza', 9);
+
+INSERT INTO funcionario
+(salario, datanasc,nome, FK_ID_Estabelecimento)
+VALUES
+(1700, '21/06/2001', 'Rafael Abrantes', 8);
+
+INSERT INTO funcionario
+(salario, datanasc,nome, FK_ID_Estabelecimento)
+VALUES
+(1800, '21/04/2003', 'Richard', 1);
+
+/*INSERT colaborador*/
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Minas Gerais', 'AV. Rodolfo de Nobrega, 144', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Minas Gerais', 'Avenida do Estado, 1000', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('São Paulo', 'AV. Paulista, 800', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('São Paulo', 'Rua Floriano de Magalhães, 445', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Pernanbuco', 'Rua Coronel Alberto Lundgren, 339', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('São Paulo', 'AV. Borba Gato, 1059', 1);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Île-de-France (França)', 'Rua de Saigon, 5', 2);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Braga (Portugal)', 'Rua da Capela, 13', 2);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('Île-de-France (França)', 'Rua de Saigon, 33', 2);
+
+INSERT INTO colaborador
+(estado, endereço,FK_ID_Estabelecimento)
+VALUES
+('La Rosaleda (Espanha)', 'AV. José Maria II', 2);
+
+select * from colaborador;
+
 
 /*UPDATE's*/
 UPDATE estabelecimento SET estado = 'RJ' WHERE ID_estabelecimento = 1;
