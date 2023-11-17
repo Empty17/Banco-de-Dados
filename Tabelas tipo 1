@@ -18,7 +18,10 @@ CREATE TABLE consumivel
 (
 		ID_Consumivel int unsigned not null auto_increment,
         preco double not null,
-        PRIMARY KEY (ID_Consumivel)
+        FK_ID_Estabelecimento int unsigned not null,
+        PRIMARY KEY (ID_Consumivel),
+		CONSTRAINT FK_Estabelecimento_Consumivel FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento) 
+
 );
 
 CREATE TABLE tiposConsumivel
@@ -101,11 +104,13 @@ CREATE TABLE livros
 (
 ID_Livro int unsigned not null auto_increment,
 FK_ID_Cliente int unsigned not null,
+FK_ID_Autor int unsigned not null,
 editora varchar(50) not null,
 ano_lanc varchar(10) not null,
 titulo varchar(50) not null default '',
 PRIMARY KEY(ID_Livro),
-CONSTRAINT FK_ID_Cliente_Livro FOREIGN KEY ( FK_ID_Cliente ) REFERENCES cliente(ID_Cliente)
+CONSTRAINT FK_ID_Cliente_Livro FOREIGN KEY ( FK_ID_Cliente ) REFERENCES cliente(ID_Cliente),
+CONSTRAINT FK_ID_Autor_Livro FOREIGN KEY ( FK_ID_Autor) REFERENCES autor(ID_Autor)
 );
 
 CREATE TABLE tipogenero
@@ -127,15 +132,6 @@ PRIMARY KEY(ID_TipoGenero),
 CONSTRAINT FK_ID_Livro_TipoGenero FOREIGN KEY ( FK_ID_Livro ) REFERENCES livros(ID_Livro)
 );
 
-CREATE TABLE autorlivros
-(
-		ID_AutorLivros int unsigned auto_increment,
-  		FK_ID_Autor int unsigned not NULL,
-  		fk_ID_Livros int unsigned not NULL,
-        PRIMARY KEY (ID_AutorLivros),
-  		CONSTRAINT FK_ID_AL_Livros FOREIGN KEY ( FK_ID_Livros ) REFERENCES livros(ID_Livro),
-    	CONSTRAINT FK_ID_AL_Autor FOREIGN KEY ( FK_ID_Autor ) REFERENCES autor(ID_Autor)
-);
 
 CREATE TABLE funcionario
 (
@@ -183,55 +179,9 @@ agua double not null,
 PRIMARY KEY(ID_TipoCusto),
 CONSTRAINT FK_ID_TC_TipoCustos FOREIGN KEY ( FK_ID_Custos ) REFERENCES custos(ID_Custos)
 );
-UPDATE estabelecimento SET estado = 'RJ' WHERE ID_estabelecimento = 1;
-UPDATE estabelecimento SET bairro = 'Ipanema' WHERE ID_estabelecimento = 2;
-UPDATE estabelecimento SET nome = 'Boteco Belmonte' WHERE ID_estabelecimento = 3;
-UPDATE estabelecimento SET endereço = 'Av. Vieira Souto, 236' WHERE ID_estabelecimento = 4;
-UPDATE estabelecimento SET estado = 'SP', bairro = 'Santo Amaro', nome = 'Mc Donalds', endereço = 'SP-015' WHERE ID_estabelecimento = 5;
-
-UPDATE consumivel SET preco = 18.99 WHERE ID_Consumivel = 1;
-UPDATE consumivel SET preco = 2.49 WHERE ID_Consumivel = 2;
-UPDATE consumivel SET preco = 25.50 WHERE ID_Consumivel = 3;
-UPDATE consumivel SET preco = 2600.00 WHERE ID_Consumivel = 4;
-UPDATE consumivel SET preco = 16.99 WHERE ID_Consumivel = 5;
-
-UPDATE tiposConsumivel SET bebidas = 'Refrigerante' WHERE FK_ID_Consumivel = 1;
-UPDATE tiposConsumivel SET filmes = 'Terror' WHERE FK_ID_Consumivel = 4;
-UPDATE tiposConsumivel SET prlucia = 'Jogos de Tabuleiro' WHERE FK_ID_Consumivel = 5;
-UPDATE tiposConsumivel SET bebidas = 'Energético' WHERE FK_ID_Consumivel = 7;
-UPDATE tiposConsumivel SET comidas = 'Vegano' WHERE FK_ID_Consumivel = 9;
-
-UPDATE cliente SET nome = 'Rogério Tergolina' WHERE ID_Cliente = 1;
-UPDATE cliente SET dataNasc = '09/01/1983' WHERE ID_Cliente = 3;
-UPDATE cliente SET CPF = '427.819.356-23' WHERE ID_Cliente = 5;
-UPDATE cliente SET nome = 'Leandro da Silva' WHERE ID_Cliente = 7;
-UPDATE cliente SET dataNasc = '15/05/2002' WHERE ID_Cliente = 9;
-
-DELETE FROM estabelecimento WHERE ID_estabelecimento = 6;
-DELETE FROM estabelecimento WHERE ID_estabelecimento = 8;
-DELETE FROM estabelecimento WHERE ID_estabelecimento = 9;
-DELETE FROM estabelecimento WHERE ID_estabelecimento = 10;
-
-DELETE FROM consumivel WHERE ID_Consumivel = 6;
-DELETE FROM consumivel WHERE ID_Consumivel = 7;
-DELETE FROM consumivel WHERE ID_Consumivel = 8;
-DELETE FROM consumivel WHERE ID_Consumivel = 9;
-DELETE FROM consumivel WHERE ID_Consumivel = 10;
-
-DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 6;
-DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 7;
-DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 8;
-DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 9;
-DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 10;
-
-DELETE FROM cliente WHERE ID_Cliente = 2;
-DELETE FROM cliente WHERE ID_Cliente = 4;
-DELETE FROM cliente WHERE ID_Cliente = 6;
-DELETE FROM cliente WHERE ID_Cliente = 8;
-DELETE FROM cliente WHERE ID_Cliente = 10;
 
 /*
-SELECT 
+INSERT's 
 */
 INSERT INTO cliente
 ( CPF, nome, dataNasc)
@@ -334,56 +284,206 @@ VALUES
 (10, 'BA', 'Meu Rei', 'Rua Alves de Santana, 8474', 'Bibliotech');
 
 /*
-SELECT consumivel
+INSERT consumivel
 */
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(15.99);
+(15.99, 10);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(1.99);
+(1.99, 9);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(20.00);
+(20.00, 8);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(2500.00);
+(2500.00, 7);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(15.99);
+(15.99, 6);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(19.99);
+(19.99, 5);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(9.99);
+(9.99, 4);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(150.59);
+(150.59, 3);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(1854.00);
+(1854.00, 2);
 
 INSERT INTO consumivel
-(preco)
+(preco, FK_ID_Estabelecimento)
 VALUES
-(10.00);
+(10.00, 1);
 
+/*
+INSERT autor
+*/
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Brasilerio', 'Roberto Guimarães', '17/01/1968');
 
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Americano', 'Gus Williams', '27/09/1928');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Indiana', 'Kali J.J', '04/12/2000');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Italiana', 'Stella Pagano', '19/06/1877');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Português', 'José Saramago', '16/09/1922');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Brasileira', 'Clarice Lispector', '10/12/1920');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Russo', 'Fiódor Dostoiévski', '09/02/1821');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Britânico', 'William Shakespeare', '23/04/1564');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Colômbiano', 'Gabriel García Márquez', '06/03/1927');
+
+INSERT INTO autor
+(nacionalidade, nome, dataNasc)
+VALUES
+('Francês', 'Marcel Proust', '10/07/1871');
+
+/*INSERT livros*/
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(10, 'Senac', '27/09/1998', 'Rosas de Fogo', 4);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(6, 'Editora Rocco', '18/04/1975', 'Lembranças Profundas', 1);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(9, 'Editora Sextante', '24/11/2002', 'Lembranças Parte 2', 8);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(7, 'Saraiva', '01/12/2000', 'Morro das Águas', 5);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(3, 'Senac', '27/09/2000', 'Rosas de Fogo - O Sangue Azul', 6);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(2, 'Editora Arqueiro', '02/10/1977', 'Milhagre do Amanhã', 2);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(8, 'Senac', '07/09/2020', 'Black Mirror: Por Trás da Tela', 3);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(4, 'Senac', '17/01/2005', 'Virada de Chave', 9);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(5, 'Editora Rocco', '16/07/1998', 'Lembrasnças Profundas: Parte 2', 7);
+
+INSERT INTO livros
+(FK_ID_Cliente, editora, ano_lanc, titulo, FK_ID_Autor)
+VALUES
+(1, 'Editora Vida', '01/01/1800', 'A Biblia dos Chefes', 10);
+
+/*UPDATE's*/
+UPDATE estabelecimento SET estado = 'RJ' WHERE ID_estabelecimento = 1;
+UPDATE estabelecimento SET bairro = 'Ipanema' WHERE ID_estabelecimento = 2;
+UPDATE estabelecimento SET nome = 'Boteco Belmonte' WHERE ID_estabelecimento = 3;
+UPDATE estabelecimento SET endereço = 'Av. Vieira Souto, 236' WHERE ID_estabelecimento = 4;
+UPDATE estabelecimento SET estado = 'SP', bairro = 'Santo Amaro', nome = 'Mc Donalds', endereço = 'SP-015' WHERE ID_estabelecimento = 5;
+
+UPDATE consumivel SET preco = 18.99 WHERE ID_Consumivel = 1;
+UPDATE consumivel SET preco = 2.49 WHERE ID_Consumivel = 2;
+UPDATE consumivel SET preco = 25.50 WHERE ID_Consumivel = 3;
+UPDATE consumivel SET preco = 2600.00 WHERE ID_Consumivel = 4;
+UPDATE consumivel SET preco = 16.99 WHERE ID_Consumivel = 5;
+
+UPDATE tiposConsumivel SET bebidas = 'Refrigerante' WHERE FK_ID_Consumivel = 1;
+UPDATE tiposConsumivel SET filmes = 'Terror' WHERE FK_ID_Consumivel = 4;
+UPDATE tiposConsumivel SET prlucia = 'Jogos de Tabuleiro' WHERE FK_ID_Consumivel = 5;
+UPDATE tiposConsumivel SET bebidas = 'Energético' WHERE FK_ID_Consumivel = 7;
+UPDATE tiposConsumivel SET comidas = 'Vegano' WHERE FK_ID_Consumivel = 9;
+
+UPDATE cliente SET nome = 'Rogério Tergolina' WHERE ID_Cliente = 1;
+UPDATE cliente SET dataNasc = '09/01/1983' WHERE ID_Cliente = 3;
+UPDATE cliente SET CPF = '427.819.356-23' WHERE ID_Cliente = 5;
+UPDATE cliente SET nome = 'Leandro da Silva' WHERE ID_Cliente = 7;
+UPDATE cliente SET dataNasc = '15/05/2002' WHERE ID_Cliente = 9;
+
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 6;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 8;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 9;
+DELETE FROM estabelecimento WHERE ID_estabelecimento = 10;
+
+DELETE FROM consumivel WHERE ID_Consumivel = 6;
+DELETE FROM consumivel WHERE ID_Consumivel = 7;
+DELETE FROM consumivel WHERE ID_Consumivel = 8;
+DELETE FROM consumivel WHERE ID_Consumivel = 9;
+DELETE FROM consumivel WHERE ID_Consumivel = 10;
+
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 6;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 7;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 8;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 9;
+DELETE FROM tiposConsumivel WHERE FK_ID_Consumivel = 10;
+
+DELETE FROM cliente WHERE ID_Cliente = 2;
+DELETE FROM cliente WHERE ID_Cliente = 4;
+DELETE FROM cliente WHERE ID_Cliente = 6;
+DELETE FROM cliente WHERE ID_Cliente = 8;
+DELETE FROM cliente WHERE ID_Cliente = 10;
