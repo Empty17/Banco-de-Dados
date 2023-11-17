@@ -118,17 +118,17 @@ CREATE TABLE tipogenero
 (
 ID_TipoGenero int unsigned not null auto_increment,
 FK_ID_Livro int unsigned not null,
-acao boolean not null,
-gastronomia boolean not null,
-ficcao_cientifica boolean not null,
-infantil boolean not null,
-fantasia boolean not null,
-religioso boolean not null,
-romance boolean not null,
-novela boolean not null,
-suspense boolean not null,
-horror boolean not null,
-aventura boolean not null,
+acao bit not null default 0,
+gastronomia bit not null default 0,
+ficcao_cientifica bit not null default 0,
+infantil bit not null default 0,
+fantasia bit not null default 0,
+religioso bit not null default 0,
+romance bit not null default 0,
+novela bit not null default 0,
+suspense bit not null default 0,
+horror bit not null default 0,
+aventura bit not null default 0,
 PRIMARY KEY(ID_TipoGenero),
 CONSTRAINT FK_ID_Livro_TipoGenero FOREIGN KEY ( FK_ID_Livro ) REFERENCES livros(ID_Livro)
 );
@@ -596,10 +596,15 @@ INSERT INTO colaborador
 VALUES
 ('La Rosaleda (Espanha)', 'AV. José Maria II', 2);
 
-select * from colaborador;
+/*INSERT tipogenero*/
+INSERT INTO tipogenero
+(acao, FK_ID_Livro)
+VALUES
+(1, 5);
+select * from tipogenero;
 
 
-/*UPDATE's*/
+/*UPDATE's
 UPDATE estabelecimento SET estado = 'RJ' WHERE ID_estabelecimento = 1;
 UPDATE estabelecimento SET bairro = 'Ipanema' WHERE ID_estabelecimento = 2;
 UPDATE estabelecimento SET nome = 'Boteco Belmonte' WHERE ID_estabelecimento = 3;
@@ -646,3 +651,4 @@ DELETE FROM cliente WHERE ID_Cliente = 4;
 DELETE FROM cliente WHERE ID_Cliente = 6;
 DELETE FROM cliente WHERE ID_Cliente = 8;
 DELETE FROM cliente WHERE ID_Cliente = 10;
+*/
