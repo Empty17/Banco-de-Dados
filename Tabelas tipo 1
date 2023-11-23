@@ -71,11 +71,12 @@ CREATE TABLE endereco
 CREATE TABLE telefone
 (
 	ID_Telefone int unsigned not null auto_increment,
-    telefone int unsigned not null,
+    telefone varchar(15) not null default '(00) 00000-0000',
     FK_ID_Cliente int unsigned not null,
     PRIMARY KEY(ID_Telefone),
     CONSTRAINT FK_Cliente_Telefone FOREIGN KEY (FK_ID_Cliente) REFERENCES cliente(ID_Cliente) 
 );
+
 
 CREATE TABLE compra
 (
@@ -689,7 +690,107 @@ INSERT INTO endereco
 VALUES
 (10, 'Lago Azul', 'RS', 'Florianópolis', '49565-015', 'Complexo B, N°15', 10);
 
-select * from endereco;
+/*Insert's telefone*/
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(11) 90445-0669', 10);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(33) 41485-8393', 7);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(19) 44515-8495', 4);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(11) 27258-6511', 5);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(19) 57795-8217', 9);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(19) 84784-8217', 2);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(21) 03258-8217', 8);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(37) 95854-1552', 3);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(43) 95184-1218', 1);
+
+INSERT INTO telefone
+(telefone, FK_ID_Cliente)
+VALUES
+('(11) 98295-8217', 6);
+
+/*Insert custo*/
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(119.50, 1, 10);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(5800.90, 2, 9);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(952, 3, 8);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(10000.00, 4, 7);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(6529.52, 5, 6);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(10.00, 6, 5);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(1058.00, 7, 4);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(1058.00, 8, 3);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(9854.00, 9, 2);
+
+INSERT INTO custos
+(custosTotais, FK_ID_Estabelecimento, FK_ID_Consumivel)
+VALUES
+(50000.00, 10, 1);
 
 
 
