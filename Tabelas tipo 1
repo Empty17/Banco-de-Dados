@@ -46,6 +46,20 @@ CREATE TABLE cliente
         PRIMARY KEY (ID_Cliente)
 );
 
+CREATE TABLE pessoafisica
+(
+	ID_pf int unsigned auto_increment,
+	CPF varchar(15) not null,
+    PRIMARY KEY (ID_pf)
+);
+
+CREATE TABLE pessoajuridica
+(
+	ID_pj int unsigned auto_increment,
+	CNPJ varchar(15) not null,
+    PRIMARY KEY (ID_pj)
+);
+
 CREATE TABLE autor
 (
 		ID_Autor int unsigned auto_increment,
@@ -162,8 +176,7 @@ CREATE TABLE custos
   		FK_ID_Estabelecimento int unsigned not NULL,
   		FK_ID_Consumivel int unsigned not NULL,
         PRIMARY KEY (ID_Custos),
-  		CONSTRAINT FK_Estabelecimento_Custos FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento),
-  		CONSTRAINT FK_Consumivel_Custos FOREIGN KEY (FK_ID_Consumivel) REFERENCES consumivel(ID_Consumivel)
+  		CONSTRAINT FK_Estabelecimento_Custos FOREIGN KEY (FK_ID_Estabelecimento) REFERENCES estabelecimento(ID_Estabelecimento)
 );
 
 CREATE TABLE tipocustos
@@ -1063,13 +1076,6 @@ DELETE FROM compra WHERE ID_Compra = 2;
 DELETE FROM compra WHERE ID_Compra = 6;
 DELETE FROM compra WHERE datas = '21/12/2001';
 
-/**/
-DELETE FROM cliente WHERE nome = 'Leandro da Silva';
-DELETE FROM cliente WHERE ID_Cliente = 2;
-DELETE FROM cliente WHERE ID_Cliente = 6;
-DELETE FROM cliente WHERE ID_Cliente = 1;
-DELETE FROM cliente WHERE CPF = '154.850.005-84';
-
 
 DELETE FROM consumivel WHERE ID_Consumivel = 6;
 DELETE FROM consumivel WHERE ID_Consumivel = 7;
@@ -1078,12 +1084,18 @@ DELETE FROM consumivel WHERE ID_Consumivel = 9;
 DELETE FROM consumivel WHERE ID_Consumivel = 10;
 
 
-
-DELETE FROM custos WHERE ID_Custos = 10;
 DELETE FROM custos WHERE ID_Custos = 2;
-DELETE FROM custos WHERE ID_Custos = 7;
-DELETE FROM custos WHERE custosTotais = 999.99;
 DELETE FROM custos WHERE custosTotais = 340.1;
+DELETE FROM custos WHERE custosTotais = 952;
+DELETE FROM custos WHERE funcionario = 3;
+DELETE FROM custos WHERE custosTotais = 999.99;
+
+
+DELETE FROM cliente WHERE nome = 'Leandro da Silva';
+DELETE FROM cliente WHERE ID_Cliente = 2;
+DELETE FROM cliente WHERE ID_Cliente = 6;
+DELETE FROM cliente WHERE ID_Cliente = 1;
+DELETE FROM cliente WHERE CPF = '154.850.005-84';
 
 
 DELETE FROM estabelecimento WHERE ID_estabelecimento = 6;
